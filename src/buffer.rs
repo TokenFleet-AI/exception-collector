@@ -11,11 +11,11 @@ use std::{path::Path, sync::Arc};
 
 use chrono::{DateTime, TimeZone, Utc};
 use dashmap::DashMap;
-use rusqlite::{Connection, params};
+use rusqlite::{params, Connection};
 
 use crate::{
-    AggregatedException, CollectorError, CollectorResult, ExceptionRecord,
-    signature::compute_signature,
+    signature::compute_signature, AggregatedException, CollectorError, CollectorResult,
+    ExceptionRecord,
 };
 
 /// `SQLite` schema for the aggregated exceptions table.
@@ -748,7 +748,7 @@ mod tests {
 
             let loaded = buffer.load().unwrap();
             assert_eq!(loaded.len(), 1); // only the persisted one
-            // After load, both entries are in memory
+                                         // After load, both entries are in memory
             assert_eq!(buffer.len(), 2);
         }
     }

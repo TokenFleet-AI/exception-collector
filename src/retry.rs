@@ -82,7 +82,7 @@ impl RetryPolicy {
 
 impl Default for RetryPolicy {
     fn default() -> Self {
-        Self::new(3, Duration::from_mins(5))
+        Self::new(3, Duration::from_secs(300))
     }
 }
 
@@ -162,7 +162,7 @@ mod tests {
     fn test_retry_policy_default_values() {
         let policy = RetryPolicy::default();
         assert_eq!(policy.max_retries, 3);
-        assert_eq!(policy.base_delay, Duration::from_mins(5));
+        assert_eq!(policy.base_delay, Duration::from_secs(300));
     }
 
     #[test]
@@ -180,12 +180,12 @@ mod tests {
 
     #[test]
     fn test_retry_policy_backoff_delay_exponential() {
-        let policy = RetryPolicy::new(3, Duration::from_mins(5));
+        let policy = RetryPolicy::new(3, Duration::from_secs(300));
 
         // 5min → 25min → 125min
-        assert_eq!(policy.backoff_delay(0), Duration::from_mins(5));
-        assert_eq!(policy.backoff_delay(1), Duration::from_mins(25));
-        assert_eq!(policy.backoff_delay(2), Duration::from_mins(125));
+        assert_eq!(policy.backoff_delay(0), Duration::from_secs(300));
+        assert_eq!(policy.backoff_delay(1), Duration::from_secs(1500));
+        assert_eq!(policy.backoff_delay(2), Duration::from_secs(7500));
     }
 
     #[test]

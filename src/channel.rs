@@ -5,7 +5,7 @@
 use async_trait::async_trait;
 use serde::Serialize;
 
-use crate::{CollectorError, CollectorResult, llm::LlmChannel};
+use crate::{llm::LlmChannel, CollectorError, CollectorResult};
 
 /// HTTP-backed LLM channel that calls an OpenAI-compatible API.
 #[derive(Debug, Clone)]

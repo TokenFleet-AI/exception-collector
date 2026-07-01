@@ -51,9 +51,9 @@ impl Default for CollectorConfig {
             scan_interval_secs: 300,
             daily_trigger_hour: 2,
             distinct_count_threshold: 20,
-            cooldown_duration: Duration::from_hours(1),
+            cooldown_duration: Duration::from_secs(3600),
             max_retries: 3,
-            retry_base_delay: Duration::from_mins(5),
+            retry_base_delay: Duration::from_secs(300),
             repo_map: HashMap::new(),
         }
     }
@@ -127,9 +127,9 @@ mod tests {
         assert_eq!(config.scan_interval_secs, 300);
         assert_eq!(config.daily_trigger_hour, 2);
         assert_eq!(config.distinct_count_threshold, 20);
-        assert_eq!(config.cooldown_duration, Duration::from_hours(1));
+        assert_eq!(config.cooldown_duration, Duration::from_secs(3600));
         assert_eq!(config.max_retries, 3);
-        assert_eq!(config.retry_base_delay, Duration::from_mins(5));
+        assert_eq!(config.retry_base_delay, Duration::from_secs(300));
         assert!(config.repo_map.is_empty());
     }
 

@@ -36,7 +36,7 @@ mod signature;
 use std::{fmt, path::PathBuf};
 
 use async_trait::async_trait;
-pub use buffer::{ExceptionBuffer, exceptions_dir};
+pub use buffer::{exceptions_dir, ExceptionBuffer};
 #[cfg(feature = "http-llm")]
 pub use channel::HttpLlmChannel;
 use chrono::{DateTime, Utc};
@@ -50,7 +50,7 @@ pub use llm::{
 };
 pub use pipeline::PipelineRunner;
 pub use reporter::{CustomPlatformReporter, GitHubReporter};
-pub use retry::{RetryPolicy, with_retry};
+pub use retry::{with_retry, RetryPolicy};
 use serde::{Deserialize, Serialize};
 pub use signature::compute_signature;
 use thiserror::Error;
@@ -685,9 +685,9 @@ mod tests {
 
         assert_eq!(config.daily_trigger_hour, 2);
         assert_eq!(config.distinct_count_threshold, 20);
-        assert_eq!(config.cooldown_duration, Duration::from_hours(1));
+        assert_eq!(config.cooldown_duration, Duration::from_secs(3600));
         assert_eq!(config.max_retries, 3);
-        assert_eq!(config.retry_base_delay, Duration::from_mins(5));
+        assert_eq!(config.retry_base_delay, Duration::from_secs(300));
         assert!(config.repo_map.is_empty());
     }
 

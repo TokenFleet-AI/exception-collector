@@ -12,7 +12,7 @@ use std::fmt::Write as _;
 
 use sha2::{Digest, Sha256};
 
-use crate::{ExceptionKind, ExceptionRecord, normalize::normalize_message};
+use crate::{normalize::normalize_message, ExceptionKind, ExceptionRecord};
 
 /// Compute a SHA256 deduplication signature for an exception record.
 ///

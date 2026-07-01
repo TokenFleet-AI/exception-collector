@@ -176,8 +176,7 @@ pub struct ExistingIssueData {
 
 // ── Prompt Building ─────────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT: &str =
-    "\
+const SYSTEM_PROMPT: &str = "\
 You are a TokenFleet exception classification assistant. Your job is to determine whether each new \
      exception matches an existing open issue (semantic duplicate) or is truly new. For \
      duplicates: reference the existing issue number. For new issues: generate a concise title \
