@@ -2,3 +2,5 @@
 Cargo.lock
 .superpowers
 .claude
+.claude/gh-issue/
+.idea/
