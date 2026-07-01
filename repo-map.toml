@@ -1,0 +1,10 @@
+# TokenFleet-AI 组件 → GitHub 仓库映射
+# 只列出 Rust 运行时项目。新增组件时追加。
+
+[components]
+"token-fleet-switch" = "TokenFleet-AI/token-fleet-switch"
+"token-fleet-switch-server" = "TokenFleet-AI/token-fleet-switch"
+"agent-proxy-rust" = "TokenFleet-AI/agent-proxy-rust"
+"llm-bridge-rust" = "TokenFleet-AI/llm-bridge-rust"
+"tokenless" = "TokenFleet-AI/tokenless"
+"rtk" = "TokenFleet-AI/rtk"
