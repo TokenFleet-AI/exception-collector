@@ -110,33 +110,22 @@ cargo doc --no-deps --open
 - **异步运行时**: 使用 `tokio`（rt-multi-thread, macros, time, process）
 - **并发安全**: DashMap 用于内存聚合，Mutex 保护 SQLite 连接
 
-## 发布流程
+## Release Process
 
-### 发布前检查
+发布采用三步策略：**先 tag，CI 通过后发布，发布成功后再 bump 版本号**。
+
+版本号声明在根 `Cargo.toml` 中（单 crate 项目）。
+
 ```bash
-# 运行所有检查
-make lint
+# Step 1: 用当前版本号生成 CHANGELOG、创建 tag 并推送（不修改版本号）
+make release
 
-# 或者分步执行
-make fmt      # 格式化
-make clippy   # lint 检查
-make audit    # 安全审计
-make test     # 运行测试
-```
-
-### 发布新版本
-```bash
-# Step 1: 更新版本、生成 CHANGELOG、创建 tag、推送
-make release VERSION=patch  # 或 minor, major
-
-# Step 2: 等待 CI 通过后，发布到 crates.io
+# Step 2: 等待 GitHub Actions CI 通过后，发布到 crates.io
 make release-publish
-```
 
-### 版本更新策略
-- **patch**: 修复 bug，不改变 API（0.1.0 → 0.1.1）
-- **minor**: 新增功能，向后兼容（0.1.0 → 0.2.0）
-- **major**: 破坏性变更（0.1.0 → 1.0.0）
+# Step 3: 发布成功后升级版本号（VERSION 支持 patch|minor|major）
+make bump VERSION=patch
+```
 
 ## Pre-commit 配置
 
